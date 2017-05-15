@@ -1,0 +1,261 @@
+body {
+  font-family: 'Open Sans', sans-serif; }
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box; }
+
+.leftHeader {
+  margin: 0px auto;
+  display: block;
+  padding-left: 90px;
+  padding-top: 5px; }
+  .leftHeader .fa-instagram {
+    display: inline-block;
+    font-size: 35px;
+    border-right: grey solid 1px;
+    padding-right: 15px;
+    margin-right: 10px;
+    text-decoration: none;
+    color: black; }
+  .leftHeader .smalltext {
+    display: inline-block; }
+
+.middleHeader {
+  padding-top: 25px;
+  margin: 0px auto; }
+  .middleHeader .subscribe-input {
+    width: 235px;
+    text-align: center;
+    margin: 0px auto;
+    background: white; }
+
+.rightHeader {
+  font-size: 25px;
+  padding-top: 23px; }
+  .rightHeader i {
+    padding-right: 18px; }
+  .rightHeader a {
+    text-decoration: none;
+    color: black;
+    padding-right: 18px; }
+
+.addImage {
+  text-align: center;
+  font-size: 20px;
+  padding-top: 20px; }
+
+.addPic {
+  background: none;
+  border: none; }
+
+.fa-user-o, .fa-instagram {
+  color: black; }
+
+.top {
+  border: .5px solid #E6E6E6;
+  background: #FAFAFA;
+  position: fixed;
+  z-index: 100;
+  width: 100%; }
+
+.navBar {
+  transition: .3s ease-in-out;
+  transition-duration: .3s;
+  transition-timing-function: ease-in-out;
+  transition-delay: initial; }
+
+.navBarHidden {
+  transform: translateY(-100%) !important; }
+
+.navBarVisible {
+  display: block;
+  transform: translateY(0%); }
+
+.messager {
+  position: fixed;
+  top: 0;
+  border: .5px solid #E6E6E6;
+  background: #FAFAFA;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 150px;
+  height: 80%;
+  width: 300px; }
+  .messager ul {
+    padding: 0;
+    padding-top: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    overflow-y: scroll;
+    height: 92%; }
+    .messager ul li {
+      background: #0A82FF;
+      color: white;
+      padding-bottom: 3px;
+      padding-top: 3px;
+      padding-left: 5px;
+      padding-right: 5px;
+      border-radius: 10px;
+      text-align: left;
+      margin-bottom: 10px; }
+
+.chatBar {
+  transition: .2s ease-in-out;
+  transition-duration: .2s;
+  transition-timing-function: ease-in-out;
+  transition-delay: initial; }
+
+.chatBarHidden {
+  transform: translateX(-100%) !important; }
+
+.chatBarVisible {
+  transform: translateX(0%); }
+
+.floatingChat {
+  position: fixed;
+  cursor: pointer;
+  top: 0;
+  font-size: 30px;
+  border: .5px solid #E6E6E6;
+  background: #FAFAFA;
+  padding-left: 6px;
+  padding-right: 6px;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-top: 100px; }
+
+form {
+  position: absolute;
+  bottom: 0;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  vertical-align: top; }
+  form .messageInput {
+    display: inline-block;
+    width: 218px;
+    vertical-align: top; }
+  form .messageSend {
+    vertical-align: top;
+    display: inline-block; }
+
+.hamburgerMenu {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  margin-top: 30px;
+  margin-left: 60px;
+  width: 30px;
+  height: 19px;
+  cursor: pointer; }
+
+.bar, .bar:after, .bar:before {
+  width: 30px;
+  height: 3px; }
+
+.bar {
+  position: relative;
+  transform: translateY(8px);
+  background: black;
+  transition: all 0ms 200ms; }
+  .bar.animate {
+    background: rgba(255, 255, 255, 0); }
+
+.bar:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 8px;
+  background: black;
+  transition: bottom 200ms 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+.bar:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  background: black;
+  transition: top 200ms 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+.bar.animate:after {
+  top: 0;
+  transform: rotate(45deg);
+  transition: top 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+.bar.animate:before {
+  bottom: 0;
+  transform: rotate(-45deg);
+  transition: bottom 200ms cubic-bezier(0.23, 1, 0.32, 1), transform 200ms 200ms cubic-bezier(0.23, 1, 0.32, 1); }
+
+.loginButton {
+  margin-left: 44%;
+  margin-top: 15%; }
+
+.description {
+  padding-top: 8px;
+  padding-left: 15px; }
+  .description i {
+    font-size: 25px;
+    padding-right: 10px; }
+  .description p {
+    padding-top: 10px; }
+  .description a {
+    color: black;
+    text-decoration: none; }
+
+.title {
+  padding-left: 15px;
+  display: block;
+  padding-bottom: 5px;
+  padding-top: 3px;
+  border-bottom: .5px solid #E6E6E6; }
+  .title img {
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px; }
+  .title h4 {
+    display: inline-block; }
+
+.topRow {
+  padding-bottom: 12px; }
+
+img {
+  width: 100%; }
+
+.mainBody {
+  background: white; }
+
+.instaPosts {
+  background: white;
+  border: .5px solid #E6E6E6;
+  border-radius: 3px;
+  margin-top: 60px; }
+
+.likeButton {
+  background: none;
+  border: none;
+  font-size: 25px;
+  padding-right: 10px; }
+
+.footer {
+  margin-top: 10px; }
+
+.userPics {
+  margin-top: 25px;
+  margin-bottom: 25px;
+  height: 300px; }
+  .userPics img {
+    height: 100%; }
+
+.addPicture {
+  padding-top: 125px; }
+  .addPicture img {
+    height: 470px;
+    width: 470px;
+    border-radius: 10px; }

@@ -1,0 +1,87 @@
+<!doctype html>
+<html ng-app='familyshare'>
+
+<head>
+    <title>Family Share</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://use.fontawesome.com/32cc6c2324.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+    <section>
+        <!-- Header -->
+
+        <!-- Hamburger Menu -->
+
+        <div class="hamburgerMenu">
+            <div class="bar"></div>
+        </div>
+
+        <!-- Floating Chat Button -->
+
+        <div class="floatingChat">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+        </div>
+
+        
+        <!-- Chat Popover -->
+
+        <div class="messager chatBar chatBarHidden chatBarVisible">
+            <ul id="messages"></ul>
+            <form class="message">
+                <textarea class="form-control messageInput" rows="1"></textarea>
+                <button class="btn btn-primary messageSend">Send</button>
+            </form>
+        </div>
+
+        <!-- Menu/NavBar -->
+
+        <div class="container-fluid top navBar nav navBarHidden navBarVisible">
+            <div class="container">
+                <div class="row topRow">
+                    <div class="col-md-3 middle leftHeader">
+                        <h3 class="smalltext" style="font-family: 'Raleway', sans-serif;"><b>Family Share</b></h3>
+                    </div>
+                    <div class="col-md-6 middleHeader">
+                        <input type="text" class="form-control subscribe-input" name="email" placeholder="🔍 Search" tabindex="500">
+                    </div>
+                    <div class="col-md-3 rightHeader">
+                        <a ui-sref='pic' class="fa fa-plus addPic" aria-hidden="true"></a>
+                        <i class="fa fa-heart-o" aria-hidden="true"></i>
+                        <a class="fa fa-user-o" ui-sref='user' aria-hidden="true"></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Body -->
+
+
+        <section ui-view='content'></section>
+
+
+    </section>
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.4.2/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/danialfarid-angular-file-upload/12.2.13/ng-file-upload.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/satellizer/0.15.5/satellizer.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+    <script src='js/main.js'></script>
+    <script src='js/services/API.js'></script>
+    <script src='js/controllers/TableController.js'></script>
+    <script src='js/controllers/homeController.js'></script>
+</body>
+
+</html>
