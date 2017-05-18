@@ -16,7 +16,7 @@
             let getSingleImage = API.getSingleImage(id); //this takes that ID and passes it through to vm.currentBlog so we can use on the front end
             getSingleImage.then(res => {
                 console.log(res); //see the singleblog.html page where we use vm.currentBlog
-                vm.currentPic = res.data;
+                vm.currentPic = res.data
             })
 
 

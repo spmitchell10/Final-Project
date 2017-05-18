@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4" ng-repeat="image in vm.album.images" >
                 <div class="userPics" >
-                    <img class="albumImage" ng-Click="vm.singleImage(images._id)" ui-sref='singlePic({id: images._id})' src="{{image.image}}">
+                    <img class="albumImage" ui-sref='singlePic({id: image._id})' src="{{image.image}}">
                 </div>
             </div>
         </div>

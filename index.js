@@ -135,7 +135,7 @@ app.get('/album/:id', function(req, res) {
 app.get('/albums', function(req, res) {
     let id = req.params.id //this sets the paramaters for searching for a specific entry by id
 
-    Album.find().populate({path: 'images'}).exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
+    Album.find().populate('images user').exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
         if (err) return console.error(err);
         res.json(Pic)
     })
@@ -178,7 +178,7 @@ app.post('/album', function(req, res) {
 });
 
 app.get('/album', function(req, res) {
-    Album.find().exec(function(err, Album) { //this finds and returns all of the blogs in the DB
+    Album.find().populate('images user').exec(function(err, Album) { //this finds and returns all of the blogs in the DB
         if (err) return console.error(err);
         res.json(Album)
     })
