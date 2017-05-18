@@ -1,0 +1,20 @@
+<div class="container mainBody">
+    <div class="row">
+        <div class="col-md-12 singleImagePage">
+            <div class="col-md-5">
+                <img class="singlePics" src="{{vm.currentPic.image}}">
+            </div>
+            <div class="col-md-7">
+                <div class="commentSubmit">
+                    <textarea class="form-control commentArea" rows="1" placeholder="Add a comment..." ng-model="vm.comment.description"></textarea>
+                    <button class="btn btn-primary commentButton" type="submit" ng-click="vm.submit()">Post</button>
+                </div>
+                <div ng-repeat="info in vm.currentPic.comments">
+                    <img class="userImage" src="{{info.user.picture}}" />
+                    <h5 class="userComment"><b>{{info.user.displayName}}:</b></h5>
+                    <h5 class="userComment">{{info.content}}</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

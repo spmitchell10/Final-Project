@@ -3,10 +3,13 @@
         <div class="col-md-8 col-md-offset-2 addPicture">
             <form name="form" class="col-md-4 ">
                 <h2>Add an Image!</h2>
-                <input ngf-select ng-model="file" type="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 900, height: 900}"></input>
-                <textarea class="form-control" rows="3" ng-model="vm.images.description"></textarea>
-                <input type="text" ng-model="vm.images.title" class="form-control" id="exampleInputEmail1" placeholder="Title">
-                <button class="btn btn-primary" type="submit" ng-click="submit()">Upload</button>
+                <input class="fileSelect" ngf-select ng-model="file" type="file" name="file" ngf-pattern="'image/*'" ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100" ngf-resize="{width: 900, height: 900}"></input>
+                <input type="text" ng-model="vm.images.title" class="form-control addATitle" id="exampleInputEmail1" placeholder="Title">
+                <textarea class="form-control description" rows="3" placeholder="Add a description..." ng-model="vm.images.description"></textarea>
+                <select class="form-control albumSelection" >
+                    <option ng-repeat="info in vm.album" ng-model="vm.images.album">{{info.title}}</option>
+                </select>
+                <button class="btn btn-primary uploadImage" type="submit" ng-click="submit()">Upload</button>
             </form>
             <div class="col-md-8">
                 <img src="{{vm.image}}" alt="">

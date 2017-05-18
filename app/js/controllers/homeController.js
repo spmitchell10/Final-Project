@@ -3,17 +3,35 @@
 
     angular
         .module('familyshare')
-        .controller('homeController', function(API, Upload, $auth,$location) {
+        .controller('homeController', function(API) {
+
+
+
 
 
             // Facebook Authentication
+            const vm = this;
 
-            const vm = this
+            // Post pictures to DB
 
-            vm.authenticate = function(provider) {
-                $auth.authenticate(provider);
-                $location.path('/home');
-            };
+            let images = API.getImages();
+            images.then(res => {
+                console.log(res);
+                vm.images = res.data;
+            })
+
+            // // Get a single image
+
+            // vm.singleImage = ((id) => {
+            //     let getSingleImage = API.getSingleImage(id);
+            //     getSingleImage.then(res => {
+            //         console.log(res);
+            //         vm.currentImage = res.data;
+            //         $('#myUserModal').modal('show')
+
+            //     })
+            // })
+
 
         })
 })();

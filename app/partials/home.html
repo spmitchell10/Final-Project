@@ -1,1 +1,37 @@
-<button class="btn btn-primary loginButton" ng-click="vm.authenticate('facebook')">Sign in with Facebook</button>
+<div class="container-fluid mainBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" ng-repeat="images in vm.images">
+                <div class="userPics">
+                    <img class="albumImage" ng-Click="vm.singleImage(images._id)" ui-sref='singlePic({id: images._id})' src="{{images.image}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Individual Pic Modal -->
+
+<!-- <div class="modal fade" id="myUserModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-body">
+            <div class="instaPosts">
+                <div>
+                    <img src="{{vm.currentImage.image}}">
+                </div>
+                <div class="title">
+                    <img src="pics/headshot.jpg">
+                    <h4><b>spmitchell_</b></h4>
+                </div>
+                <div class="description">
+                    <a class="fa fa-heart-o likeButton" ng-Click="vm.likeImage(vm.currentImage)" aria-hidden="true"></a>
+                    <i class="fa fa-comment-o" aria-hidden="true"></i>
+                    <h5>{{vm.currentImage.likes}} likes</h5>
+                    <p><b>spmitchell_</b> {{vm.currentImage.description}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
+
+

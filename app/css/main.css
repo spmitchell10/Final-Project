@@ -20,7 +20,8 @@ body {
     text-decoration: none;
     color: black; }
   .leftHeader .smalltext {
-    display: inline-block; }
+    display: inline-block;
+    cursor: pointer; }
 
 .middleHeader {
   padding-top: 25px;
@@ -46,9 +47,8 @@ body {
   font-size: 20px;
   padding-top: 20px; }
 
-.addPic {
-  background: none;
-  border: none; }
+.addPic, .addAlbum {
+  background: none; }
 
 .fa-user-o, .fa-instagram {
   color: black; }
@@ -82,7 +82,8 @@ body {
   border-bottom-right-radius: 5px;
   margin-top: 150px;
   height: 80%;
-  width: 300px; }
+  width: 300px;
+  z-index: 5; }
   .messager ul {
     padding: 0;
     padding-top: 10px;
@@ -225,9 +226,6 @@ form {
 .topRow {
   padding-bottom: 12px; }
 
-img {
-  width: 100%; }
-
 .mainBody {
   background: white; }
 
@@ -249,13 +247,67 @@ img {
 .userPics {
   margin-top: 25px;
   margin-bottom: 25px;
-  height: 300px; }
+  height: 300px;
+  background: #E6E6E6;
+  overflow: hidden; }
   .userPics img {
     height: 100%; }
 
 .addPicture {
   padding-top: 125px; }
   .addPicture img {
-    height: 470px;
-    width: 470px;
-    border-radius: 10px; }
+    height: auto;
+    width: auto; }
+
+.fileSelect {
+  padding-bottom: 5px; }
+
+.description {
+  margin-bottom: 5px; }
+
+.addATitle {
+  margin-bottom: 5px; }
+
+.albumSelection {
+  margin-bottom: 5px; }
+
+.albumImage {
+  width: auto;
+  height: 300px;
+  margin: 0px auto;
+  display: block;
+  background: #E6E6E6; }
+
+.formAddAlbum {
+  border-top: 1px solid #E6E6E6; }
+
+.addAlbum {
+  margin-bottom: 5px; }
+
+.singleImagePage {
+  margin-top: 100px;
+  border-top: 1px solid #E6E6E6;
+  padding-top: 20px; }
+
+.singlePics {
+  width: 100%;
+  border-radius: 10px; }
+
+.commentSubmit {
+  border-bottom: 1px solid #E6E6E6;
+  padding-bottom: 12px; }
+  .commentSubmit .commentArea {
+    display: inline-block;
+    width: 90%; }
+  .commentSubmit .commentButton {
+    vertical-align: top; }
+
+.userImage {
+  height: 30px;
+  padding-top: 4px;
+  display: inline-block;
+  border-radius: 50%; }
+
+.userComment {
+  font-size: 14px;
+  display: inline-block; }

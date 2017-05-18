@@ -9,30 +9,51 @@
 			return {
 
 
-			    postImages:(data)=>{
-			    	return $http({
-					         method:"POST",
-                   data,
-	                 url: `http://localhost:3000/pictures`,
-                  })
+			    getImages:()=>{
+        			         return $http({
+        					         method:"GET",
+        	                 url: `http://localhost:3000/picupload`,
+                          })
 				   },
 
 
 			    addImage:(data)=>{
-                    return $http({
-	                    method:"POST",
-	                    url: " http://localhost:3000/vidupload",
-	                    data: data,
-                   })
+                       return $http({
+      	                    method:"POST",
+      	                    url: "http://localhost:3000/picupload",
+      	                    data: data,
+                         })
 			     },
 
-			   //  getSingleImage:(id) => {
-      //                  return $http({
-      //                       method:"GET",
-      //                       url: ``,
-      //                       headers:{X_CSRF_TOKEN: 'stephen'},
-      //                  })
-      //              },
+           addComment:(data)=>{
+                       return $http({
+                            method:"POST",
+                            url: "http://localhost:3000/comment",
+                            data: data,
+                         })
+           },
+
+           addAlbum:(data)=>{
+                       return $http({
+                            method:"POST",
+                            url: "http://localhost:3000/album",
+                            data: data,
+                         })
+           },
+
+           getAlbum:()=>{
+                       return $http({
+                           method:"GET",
+                           url: `http://localhost:3000/album`,
+                          })
+           },
+
+			     getSingleImage:(id) => {
+                       return $http({
+                            method:"GET",
+                            url: `http://localhost:3000/pic/${id}`,
+                       })
+                   },
 
       //     likeImage:(data) => {
       //            return $http({

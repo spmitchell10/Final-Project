@@ -16,49 +16,7 @@
     <section>
         <!-- Header -->
 
-        <!-- Hamburger Menu -->
-
-        <div class="hamburgerMenu">
-            <div class="bar"></div>
-        </div>
-
-        <!-- Floating Chat Button -->
-
-        <div class="floatingChat">
-            <i class="fa fa-comment-o" aria-hidden="true"></i>
-        </div>
-
-        
-        <!-- Chat Popover -->
-
-        <div class="messager chatBar chatBarHidden chatBarVisible">
-            <ul id="messages"></ul>
-            <form class="message">
-                <textarea class="form-control messageInput" rows="1"></textarea>
-                <button class="btn btn-primary messageSend">Send</button>
-            </form>
-        </div>
-
-        <!-- Menu/NavBar -->
-
-        <div class="container-fluid top navBar nav navBarHidden navBarVisible">
-            <div class="container">
-                <div class="row topRow">
-                    <div class="col-md-3 middle leftHeader">
-                        <h3 class="smalltext" style="font-family: 'Raleway', sans-serif;"><b>Family Share</b></h3>
-                    </div>
-                    <div class="col-md-6 middleHeader">
-                        <input type="text" class="form-control subscribe-input" name="email" placeholder="🔍 Search" tabindex="500">
-                    </div>
-                    <div class="col-md-3 rightHeader">
-                        <a ui-sref='pic' class="fa fa-plus addPic" aria-hidden="true"></a>
-                        <i class="fa fa-heart-o" aria-hidden="true"></i>
-                        <a class="fa fa-user-o" ui-sref='user' aria-hidden="true"></a>
-                    </div>
-                </div>
-            </div>
-        </div>
-
+        <section ui-view='nav'></section>
 
         <!-- Body -->
 
@@ -81,7 +39,11 @@
     <script src='js/main.js'></script>
     <script src='js/services/API.js'></script>
     <script src='js/controllers/TableController.js'></script>
+    <script src='js/controllers/loginController.js'></script>
     <script src='js/controllers/homeController.js'></script>
+    <script src='js/controllers/navController.js'></script>
+    <script src='js/controllers/singlePicController.js'></script>
+    <script src='js/controllers/albumController.js'></script>
 </body>
 
 </html>

@@ -1,0 +1,42 @@
+<!-- Hamburger Menu -->
+
+        <div class="hamburgerMenu">
+            <div class="bar"></div>
+        </div>
+
+        <!-- Floating Chat Button -->
+
+        <div class="floatingChat">
+            <i class="fa fa-comment-o" aria-hidden="true"></i>
+        </div>
+
+        
+        <!-- Chat Popover -->
+
+        <div class="messager chatBar chatBarHidden chatBarVisible">
+            <ul id="messages"></ul>
+            <form class="message">
+                <textarea class="form-control messageInput" rows="1"></textarea>
+                <button class="btn btn-primary messageSend">Send</button>
+            </form>
+        </div>
+
+        <!-- Menu/NavBar -->
+
+        <div class="container-fluid top navBar nav navBarHidden navBarVisible">
+            <div class="container">
+                <div class="row topRow">
+                    <div class="col-md-3 middle leftHeader">
+                        <h3 ui-sref='home' class="smalltext" style="font-family: 'Raleway', sans-serif;"><b>Family Share</b></h3>
+                    </div>
+                    <div class="col-md-6 middleHeader">
+                        <input type="text" class="form-control subscribe-input" name="email" placeholder="🔍 Search" tabindex="500">
+                    </div>
+                    <div class="col-md-3 rightHeader">
+                        <a ui-sref='pic' class="fa fa-picture-o addPic" aria-hidden="true"></a>
+                        <a ui-sref='album' class="fa fa-address-book-o addAlbum" aria-hidden="true"></a>
+                        <a class="fa fa-user-o" ui-sref='user' aria-hidden="true"></a>
+                    </div>
+                </div>
+            </div>
+        </div>

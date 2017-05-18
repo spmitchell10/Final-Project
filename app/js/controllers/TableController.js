@@ -5,97 +5,32 @@
         .module('familyshare')
         .controller('TableController', function(API,Upload,$scope,$auth) {
 
- 
-            // Functions for Hamburger Menu and navBarHidden jQuery
 
-            (() => {
-                $('.hamburgerMenu').on('click', function() {
-                    $('.bar').toggleClass('animate');
-                })
-            })();
-
-            (() => {
-                $('.hamburgerMenu').on('click', function() {
-                    $('.navBar').toggleClass('navBarHidden');
-                })
-            })();
-
-            (() => {
-                $('.floatingChat').on('click', function() {
-                    $('.chatBar').toggleClass('chatBarHidden');
-                })
-            })();
-
-            var $chat = $(".messages");
-            $chat.scrollTop($chat.height());
-
-            //------------------------------------------------------
-
-            // Functions for the Socket/Messaging Feature
-
-            var socket = io();
-
-            $('.message').submit((e) => {
-                e.preventDefault();
-                socket.emit('chat message', $('.messageInput').val());
-                $('.messageInput').val('');
-                return false;
-            });
-
-
-            socket.on('new message', (msg) => {
-                $('#messages').append(`<li>${msg.msg}</li>`);
-                $("messages").scrollTop($("messages")[0].scrollHeight + 52);
-            });
-
-            socket.on('got error', msg => {
-                alert(msg);
-            })
-
-
-            //------------------------------------------------------
+            
+            // // Post a picture 
 
             const vm = this;
 
-            // Post pictures to DB
-
-            let images = API.postImages();
-            images.then(res => {
-                console.log(res);
-                vm.images = res.data;
+            let getAlbum = API.getAlbum(); //this takes that ID and passes it through to vm.currentBlog so we can use on the front end
+            getAlbum.then(res => {
+                console.log(res); //see the singleblog.html page where we use vm.currentBlog
+                vm.album = res.data;
             })
-
-            // // Post a picture 
-
-            vm.addImage = ((fda) => {
-
-                    
-                    
-                    let file = document.getElementById('singleFile');
-                    let getNewImage = API.addImage(form);
-                    getNewImage.then(res => {
-                        console.log(res);
-                       
-                        let images = API.postImages();
-                        images.then(res => {
-                            console.log(res);
-                            vm.images = res.data;
-                        })
-
-                    });
-                    vm.image = {};
-            })
+            
 
 
             $scope.submit = function() {
               if ($scope.form.file.$valid && $scope.file) {
+
                 $scope.upload($scope.file);
               }
             };
 
             $scope.upload = function (file) {
+                let user = $auth.getPayload();
+                vm.images.user = user.sub;
                 Upload.upload({
-                    url: 'http://localhost:3000/vidupload',
+                    url: 'http://localhost:3000/picupload',
                     data: {file: file, info:vm.images}
                 }).then(function (resp) {
                     console.log('Success ' + resp.config.data.file.name + 'uploaded. Response: ' + resp.data.image);
@@ -105,17 +40,7 @@
                 });
             };
 
-            // // Get a single image
-
-            // vm.singleImage = ((id) => {
-            //     let getSingleImage = API.getSingleImage(id);
-            //     getSingleImage.then(res => {
-            //         console.log(res);
-            //         vm.currentImage = res.data;
-            //         $('#myUserModal').modal('show')
-
-            //     })
-            // })
+            
 
             // // Like a picture on Modal
 

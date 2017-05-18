@@ -13,7 +13,7 @@ const request = require('request');
 const moment = require('moment');
 var http = require('http').Server(app);
 var mongoose = require('mongoose');
-var CONSTANTS = require('constants');
+var CREDS = require('./constants.js');
 
 
 mongoose.connect('mongodb://stephen:password@ds137291.mlab.com:37291/finalproject123');
@@ -55,8 +55,8 @@ io.on('connection', function(socket) {
 var fs = require('fs');
 var S3FS = require('s3fs');
 var s3fsImpl = new S3FS('testimages1234', { //This tells us to use the bucket of Data
-    accessKeyId: CONSTANTS.S3ACCESS,
-    secretAccessKey: CONSTANTS.S3SECRET,
+    accessKeyId: CREDS.S3ACCESS,
+    secretAccessKey: CREDS.S3SECRET,
 });
 
 s3fsImpl.create(); //This creates the bucket of Data in AS3  
@@ -68,50 +68,107 @@ var multiparty = require('connect-multiparty'),
 app.use(multipartyMiddleware);
 
 
-app.post('/vidupload', function(req, res) {
-  console.log(req.body);
+app.post('/picupload', function(req, res) {
+    console.log(req.body);
     var file = req.files.file;
     var stream = fs.createReadStream(file.path);
     let newName = Date.now();
     let extension = file.originalFilename.split('.').pop();
     let newFileName = `${newName}.${extension}`;
     return s3fsImpl.writeFile(newFileName, stream).then(function() {
-      // Image is done uploading...
+        // Image is done uploading...
         fs.unlink(file.path, function(err) {
             if (err) console.log(err);
 
-            let pic = {  //This defines what 'pic' is so we can add them to the DB - this info matches our Schema
-                  title: req.body.info.title,
-                  image: 'https://s3.amazonaws.com/testimages1234/${newFileName}',
-                  description: req.body.info.description,
-                  //user: req.body.user,
-             }
-                var newuser = new Picture(pic);
-                 newuser.save(err=> { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
-                  if (err) console.log(err); //we pass our function through
-                   res.json({ image: `https://s3.amazonaws.com/testimages1234/${newFileName}` });
-              })
+            console.log(req.body);
 
-
-
-        
+            let pic = { //This defines what 'pic' is so we can add them to the DB - this info matches our Schema
+                title: req.body.info.title,
+                image: `https://s3.amazonaws.com/testimages1234/${newFileName}`,
+                description: req.body.info.description,
+                user: req.body.info.user,
+            }
+            var newuser = new Picture(pic);
+            newuser.save(err => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
+                if (err) console.log(err); //we pass our function through
+                k
+                res.json({ image: `https://s3.amazonaws.com/testimages1234/${newFileName}` });
             })
+
+
+
+
+
+
         })
-    });
-
-
-// Posting to MongoDB -----------------------------------------------------------//
-
-app.post('/pictures', function(req, res){ 
-
-  console.log(req.body);
-  
-   
-  
+    })
 });
 
 
-// Facebook Authentication
+// Pulling Info from MongoDB -----------------------------------------------------------//
+
+
+app.get('/picupload', function(req, res) {
+    Picture.find().exec(function(err, Pic) { //this finds and returns all of the blogs in the DB
+        if (err) return console.error(err);
+        res.json(Pic)
+    })
+});
+
+app.get('/pic/:id', function(req, res) {
+    let id = req.params.id //this sets the paramaters for searching for a specific entry by id
+
+    Picture.findOne({ _id: id }).populate({ path: 'comments', populate: { path: 'user' } }).exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
+        if (err) return console.error(err);
+        res.json(Pic)
+    })
+});
+
+app.post('/comment', function(req, res) {
+
+    let comment = { //This defines what 'comment' is so we can add it to the DB - this info matches our Schema, Comment
+        content: req.body.content,
+        tags: req.body.tags,
+        user: req.body.user,
+        images: req.body.images,
+    }
+    var newComment = new Comment(comment);
+    newComment.save((err, comment) => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
+        if (err) console.log(err); //we pass our function through
+        Picture.findOne({ _id: req.body.images }).exec(function(err, image) {
+            image.comments.push(comment._id);
+            image.save()
+            res.json({ success: "Yay!" }); //this is just saying that if the id is the id you're looking for return the id
+        });
+
+    })
+
+});
+
+
+app.post('/album', function(req, res) {
+
+    let album = { //This defines what 'album' is so we can add it to the DB - this info matches our Schema, Album
+        title: req.body.title,
+        user: req.body.user,
+    }
+    var newComment = new Album(album);
+    newComment.save((err, album) => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
+        if (err) console.log(err); //we pass our function through
+
+        res.json({ success: "Yay!" }); //this is just saying that if the id is the id you're looking for return the id
+    })
+});
+
+app.get('/album', function(req, res) {
+    Album.find().exec(function(err, Album) { //this finds and returns all of the blogs in the DB
+        if (err) return console.error(err);
+        res.json(Album)
+    })
+});
+
+
+// Facebook Authentication -----------------------------------------------------------//
 
 function createJWT(user) {
     var payload = {
@@ -151,7 +208,7 @@ app.post('/auth/facebook', function(req, res) {
                     if (existingUser) {
                         var token = createJWT(existingUser);
                         console.log(token);
-                        return res.send({ token: token });
+                        return res.send({ token: token, profile: profile, id: existingUser._id });
                     }
                     var token = req.header('Authorization').split(' ')[1];
                     var payload = jwt.decode(token, 'stephensapp');
@@ -164,7 +221,7 @@ app.post('/auth/facebook', function(req, res) {
                         user.displayName = user.displayName || profile.name;
                         user.save(function() {
                             var token = createJWT(user);
-                            res.send({ token: token });
+                            res.send({ token: token, profile: profile, id: user._id });
                         });
                     });
                 });
@@ -175,14 +232,18 @@ app.post('/auth/facebook', function(req, res) {
                         var token = createJWT(existingUser);
                         return res.send({ token: token });
                     }
-                    var user = new User();
-                    user.facebook = profile.id;
-                    user.picture = 'https://graph.facebook.com/' + profile.id + '/picture?type=large';
-                    user.displayName = profile.name;
-                    user.save(function() {
+                    User.create({
+                        facebook: profile.id,
+                        picture: 'https://graph.facebook.com/' + profile.id + '/picture?type=large',
+                        displayName: profile.name,
+                    }, (err, user) => {
+                        if (err) {
+                            console.log(err);
+                            return res.json({ error: err });
+                        }
                         var token = createJWT(user);
-                        res.send({ token: token });
-                    });
+                        res.send({ token: token, profile: profile, id: user._id });
+                    })
                 });
             }
         });
@@ -218,12 +279,7 @@ app.post('/auth/facebook', function(req, res) {
 // Get all of blogs
 
 
-// app.get('/blog', function(req, res) {
-//     Blog.find().populate('author').exec(function(err, Blogs) { //this finds and returns all of the blogs in the DB
-//         if (err) return console.error(err);
-//         res.json(Blogs)
-//     })
-// });
+
 
 
 // // creating data in the database. hardcoding data
@@ -241,14 +297,7 @@ app.post('/auth/facebook', function(req, res) {
 
 
 // // Get a single blog
-// app.get('/blog/:id', function(req, res) {
-//     let id = req.params.id //this sets the paramaters for searching for a specific entry by id
-
-//     Blog.findOne({_id:id}).populate('author').exec(function(err, Blogs) { //this finds and returns all of the blogs with that ID in the DB
-//         if (err) return console.error(err);
-//         res.json(Blogs)
-//     })
-// });
+// 
 
 
 // // Post a new blog

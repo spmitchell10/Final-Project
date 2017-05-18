@@ -25,10 +25,15 @@
                     url: '/',
                     views: {
                         'content': {
-                            templateUrl: '../partials/home.html',
-                            controller: 'homeController',
+                            templateUrl: '../partials/login.html',
+                            controller: 'loginController',
                             controllerAs: 'vm',
                         },
+                        'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
 
                     }
                 }),
@@ -39,10 +44,51 @@
                     url: '/home',
                     views: {
                         'content': {
-                            templateUrl: '../index.html',
-                            controller: 'TableController',
+                            templateUrl: '../partials/home.html',
+                            controller: 'homeController',
                             controllerAs: 'vm',
                         },
+                        'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
+
+                    }
+            }),
+
+            $stateProvider
+                .state('singlePic', {
+                    url: '/pic/:id',
+                    views: {
+                        'content': {
+                            templateUrl: '../partials/singlePic.html',
+                            controller: 'singlePicController',
+                            controllerAs: 'vm',
+                        },
+                        'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
+
+                    }
+            }),
+
+            $stateProvider
+                .state('album', {
+                    url: '/album',
+                    views: {
+                        'content': {
+                            templateUrl: '../partials/album.html',
+                            controller: 'albumController',
+                            controllerAs: 'vm',
+                        },
+                        'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
 
                     }
             }),
@@ -56,6 +102,11 @@
 	                        controller: 'TableController',
 	                        controllerAs: 'vm',
 	                    },
+                      'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
 
 	                }
 	            })
