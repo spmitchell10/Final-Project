@@ -323,14 +323,14 @@ $bar-spacing: 8px;
 	margin-bottom: 25px;
 	height: 300px;
 	background: #E6E6E6;
-	overflow: hidden;
+	// overflow: hidden;
 	img{
 		height: 100%;
 	}
 }
 
 
-// addpic.html page -------------------
+// addpic.html page --------------------------------------
 
 .addPicture{
 	padding-top: 125px;
@@ -354,7 +354,13 @@ $bar-spacing: 8px;
 .albumSelection{
 	margin-bottom: 5px;
 }
-// album.html
+
+.pictureForm{
+	border-top: 1px solid #E6E6E6;
+}
+
+
+// album.html --------------------------------------
 
 .albumImage{
 	width: auto;
@@ -373,7 +379,7 @@ $bar-spacing: 8px;
 	margin-bottom: 5px;
 }
 
-// singlePic.html 
+// singlePic.html  --------------------------------------
 
 
 .singleImagePage{

@@ -58,6 +58,24 @@
             }),
 
             $stateProvider
+                .state('albumPics', {
+                    url: '/albumpics/:id',
+                    views: {
+                        'content': {
+                            templateUrl: '../partials/albumPics.html',
+                            controller: 'albumPicsController',
+                            controllerAs: 'vm',
+                        },
+                        'nav': {
+                            templateUrl: '../partials/nav.html',
+                            controller: 'navController',
+                            controllerAs: 'vm',
+                          }
+
+                    }
+            }),
+
+            $stateProvider
                 .state('singlePic', {
                     url: '/pic/:id',
                     views: {

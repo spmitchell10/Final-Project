@@ -3,7 +3,7 @@
 
     angular
         .module('familyshare')
-        .controller('homeController', function(API) {
+        .controller('albumPicsController', function(API,$stateParams) {
 
 
 
@@ -14,10 +14,12 @@
 
             // Post pictures to DB
 
-            let album = API.getAlbums();
+            let id = $stateParams.id;
+
+            let album = API.getAlbum(id);
             album.then(res => {
                 console.log(res);
-                vm.images = res.data;
+                vm.album = res.data;
             })
 
             // // Get a single image
@@ -27,7 +29,7 @@
             //     getSingleImage.then(res => {
             //         console.log(res);
             //         vm.currentImage = res.data;
-            //         $('#myUserModal').modal('show')
+                    
 
             //     })
             // })

@@ -1,0 +1,11 @@
+<div class="container-fluid mainBody">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" ng-repeat="image in vm.album.images" >
+                <div class="userPics" >
+                    <img class="albumImage" ng-Click="vm.singleImage(images._id)" ui-sref='singlePic({id: images._id})' src="{{image.image}}">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

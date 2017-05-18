@@ -88,18 +88,17 @@ app.post('/picupload', function(req, res) {
                 description: req.body.info.description,
                 user: req.body.info.user,
             }
-            var newuser = new Picture(pic);
-            newuser.save(err => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
+            var picture = new Picture(pic);
+            picture.save((err, image) => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
                 if (err) console.log(err); //we pass our function through
-                k
-                res.json({ image: `https://s3.amazonaws.com/testimages1234/${newFileName}` });
+                Album.findOne({ _id: req.body.info.album }).exec(function(err, album) { //this finds and returns all of the blogs in the DB
+                    album.images.push(image._id);
+                    album.save()
+                    if (err) return console.error(err);
+                    res.json({ image: `https://s3.amazonaws.com/testimages1234/${newFileName}` });
+                })
+
             })
-
-
-
-
-
-
         })
     })
 });
@@ -119,6 +118,24 @@ app.get('/pic/:id', function(req, res) {
     let id = req.params.id //this sets the paramaters for searching for a specific entry by id
 
     Picture.findOne({ _id: id }).populate({ path: 'comments', populate: { path: 'user' } }).exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
+        if (err) return console.error(err);
+        res.json(Pic)
+    })
+});
+
+app.get('/album/:id', function(req, res) {
+    let id = req.params.id //this sets the paramaters for searching for a specific entry by id
+
+    Album.findOne({ _id: id }).populate({path: 'images'}).exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
+        if (err) return console.error(err);
+        res.json(Pic)
+    })
+});
+
+app.get('/albums', function(req, res) {
+    let id = req.params.id //this sets the paramaters for searching for a specific entry by id
+
+    Album.find().populate({path: 'images'}).exec(function(err, Pic) { //this finds and returns all of the blogs with that ID in the DB
         if (err) return console.error(err);
         res.json(Pic)
     })

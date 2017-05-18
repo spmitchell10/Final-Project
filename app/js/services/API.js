@@ -41,10 +41,17 @@
                          })
            },
 
-           getAlbum:()=>{
+           getAlbum:(id)=>{
                        return $http({
                            method:"GET",
-                           url: `http://localhost:3000/album`,
+                           url: `http://localhost:3000/album/${id}`,
+                          })
+           },
+
+           getAlbums:()=>{
+                       return $http({
+                           method:"GET",
+                           url: `http://localhost:3000/album/`,
                           })
            },
 

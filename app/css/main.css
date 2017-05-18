@@ -248,8 +248,7 @@ form {
   margin-top: 25px;
   margin-bottom: 25px;
   height: 300px;
-  background: #E6E6E6;
-  overflow: hidden; }
+  background: #E6E6E6; }
   .userPics img {
     height: 100%; }
 
@@ -270,6 +269,9 @@ form {
 
 .albumSelection {
   margin-bottom: 5px; }
+
+.pictureForm {
+  border-top: 1px solid #E6E6E6; }
 
 .albumImage {
   width: auto;
