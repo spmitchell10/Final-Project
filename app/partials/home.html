@@ -3,7 +3,7 @@
         <div class="row">
             <div class="col-md-4" ng-repeat="images in vm.images">
                 <div class="userPics">
-                    <img class="albumImage" ui-sref='albumPics({id: images._id})' src="{{images.image}}">
+                    <img class="albumImage" ui-sref='albumPics({id: images._id})' src="{{images.images[0].image}}">
                     <h4>{{images.title}}</h4>
                 </div>
             </div>
