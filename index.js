@@ -44,6 +44,8 @@ io.on('connection', function(socket) {
 
         if (!msg || msg == "") return socket.emit('got error', { error: "Please Enter a message" });
 
+        console.log("MESSAGE")
+
         io.emit('new message', { msg: `${msg}` });
 
     });
@@ -91,7 +93,7 @@ app.post('/picupload', function(req, res) {
             var picture = new Picture(pic);
             picture.save((err, image) => { //'.save' is part of Mongoose saying save this up to the database or you can use '.create'
                 if (err) console.log(err); //we pass our function through
-                Album.findOne({ _id: req.body.info.album }).exec(function(err, album) { //this finds and returns all of the blogs in the DB
+                Album.findOne({ _id: req.body.info.album }).exec(function(err, album) { //this finds and returns all of the pics in the DB
                     album.images.push(image._id);
                     album.save()
                     if (err) return console.error(err);

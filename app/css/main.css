@@ -227,7 +227,8 @@ form {
   padding-bottom: 12px; }
 
 .mainBody {
-  background: white; }
+  background: white;
+  padding-top: 80px; }
 
 .instaPosts {
   background: white;
@@ -248,7 +249,9 @@ form {
   margin-top: 25px;
   margin-bottom: 25px;
   height: 300px;
-  background: #E6E6E6; }
+  background: #292F36;
+  border-radius: 10px;
+  overflow: hidden; }
   .userPics img {
     height: 100%; }
 
@@ -278,7 +281,8 @@ form {
   height: 300px;
   margin: 0px auto;
   display: block;
-  background: #E6E6E6; }
+  background: #292F36;
+  cursor: pointer; }
 
 .formAddAlbum {
   border-top: 1px solid #E6E6E6; }
@@ -287,7 +291,6 @@ form {
   margin-bottom: 5px; }
 
 .singleImagePage {
-  margin-top: 100px;
   border-top: 1px solid #E6E6E6;
   padding-top: 20px; }
 
@@ -313,3 +316,6 @@ form {
 .userComment {
   font-size: 14px;
   display: inline-block; }
+
+.homeLine {
+  border-top: 1px solid #E6E6E6; }

@@ -5,6 +5,8 @@
         .module('familyshare')
         .factory('API', function($http){
 
+         let socket = io();
+
 
 			return {
 
@@ -15,6 +17,11 @@
         	                 url: `http://localhost:3000/picupload`,
                           })
 				   },
+
+           postMessage:(message)=>{
+             socket.emit('chat message', message);
+             return true;
+           },
 
 
 			    addImage:(data)=>{

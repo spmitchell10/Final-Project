@@ -3,7 +3,7 @@
 
     angular
         .module('familyshare')
-        .controller('navController', function(API) {
+        .controller('navController', function(API,$auth) {
 
 
             // Functions for Hamburger Menu and navBarHidden jQuery
@@ -33,11 +33,13 @@
 
             // Functions for the Socket/Messaging Feature
 
+            let user = $auth.getPayload();
+
             var socket = io();
 
             $('.message').submit((e) => {
                 e.preventDefault();
-                socket.emit('chat message', $('.messageInput').val());
+                API.postMessage($('.messageInput').val());
                 $('.messageInput').val('');
                 return false;
             });

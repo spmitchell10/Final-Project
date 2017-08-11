@@ -1,9 +1,12 @@
 <div class="container-fluid mainBody">
-    <div class="container">
+    <div class="container homeLine">
         <div class="row">
             <div class="col-md-4" ng-repeat="images in vm.images">
                 <div class="userPics">
                     <img class="albumImage" ui-sref='albumPics({id: images._id})' src="{{images.images[0].image}}">
+                    
+                </div>
+                <div>
                     <h4>{{images.title}}</h4>
                 </div>
             </div>
